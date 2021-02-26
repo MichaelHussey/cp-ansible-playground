@@ -31,6 +31,7 @@ cp sshkey ansible_host/
 ## Prepare the inventory
 
 Assuming someone has given you a hosts.yml file, or you have created your own one - this defines how you want Confluent Platform to be deployed across a bunch of machines. These machines are the *inventory*.
+The example provided uses 3 machines *ya4533.local.net*, *ya4534.local.net* and *ya4535.local.net*.
 
 Make sure you have as many instances of *ansible_target* in the *docker-compose.yml* as there are unique hosts in the hosts.yml file, and set the hostnames to those seen in the hosts.yml file. Also update *fix_known_hosts.sh* to match the list of host names.
 
@@ -68,7 +69,7 @@ cd /data
 Now you can run the playbooks
 ````
 cd /data/cp-ansible
-ansible-playbook -i ../hosts_minimum_1.yml all.yml
+ansible-playbook -i ../hosts.yml all.yml
 ````
 You can deploy and re-deploy to your heart's content and run whatever tests you need to check the cluster works correctly.
 
