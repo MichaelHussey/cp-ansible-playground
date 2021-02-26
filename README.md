@@ -27,6 +27,9 @@ Assuming someone has given you a hosts.yml file, or you have created your own on
 
 Make sure you have as many instances of *ansible_target* in the *docker-compose.yml* as there are unique hosts in the hosts.yml file, and set the hostnames to those seen in the hosts.yml file. Also update *fix_known_hosts.sh* to match the list of host names.
 
+Also check what username the ansible playbooks should be run under, in this case it's **D003446** and edit the *docker-compose-yml* file to set *ansible_user* to that value in the *target* container.
+
+
 Start the inventory (the first time around you should see it build your container images) and then exec into the 'ansible' one.
 ````
 docker-compose up -d
