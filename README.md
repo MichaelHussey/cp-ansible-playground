@@ -42,6 +42,18 @@ Start the inventory (the first time around you should see it build your containe
 docker-compose up -d
 docker-compose  exec ansible /bin/bash
 ````
+This should give you a container where you run ansible from, the expected number of target containers running, plus 2 stopped intermediate containers.
+````
+docker-compose ps   
+             Name                        Command            State                        Ports                     
+-------------------------------------------------------------------------------------------------------------------
+ansible                          /usr/lib/systemd/systemd   Up                                                     
+cp-ansible-playground_dummy_1    /bin/sh -c echo            Exit 0                                                 
+cp-ansible-playground_target_1   /bin/sh -c echo            Exit 0                                                 
+cp1                              /usr/lib/systemd/systemd   Up       0.0.0.0:9021->9021/tcp, 0.0.0.0:9093->9093/tcp
+cp2                              /usr/lib/systemd/systemd   Up       0.0.0.0:19093->9093/tcp                       
+cp3                              /usr/lib/systemd/systemd   Up       0.0.0.0:29093->9093/tcp 
+````
 
 ## Run your playbooks!
 
@@ -63,3 +75,9 @@ When you're finished clean up with
 ````
 docker-compose down -v --rmi all --remove-orphans
 ````
+This removes all the locally built images. If you want to just change the inventory (add a few containers, change host names etc) then it's enough to do
+````
+docker-compose down
+docker-compose up -d
+````
+and you have a completely clean set of docker containers ready to rebuild the environment by running **cp-ansible** again.
