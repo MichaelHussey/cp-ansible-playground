@@ -1,0 +1,74 @@
+---
+version: '2'
+services:
+  # Just needed to get the shared base image built
+  dummy:
+    image: localbuild/cp_61_centos7
+    build: .
+  
+  # Build an image for all of the target containers and set the username to match the ansible hosts.yml
+  target:
+    image: localbuild/ansible_target_base
+    build: 
+      context: ./ansible_target_base
+      args:
+        ansible_user: D003446
+
+  # Build an image where you will run ansible from
+  ansible:
+    image: localbuild/ansible_host
+    build: ./ansible_host
+    hostname: ansible
+    container_name: ansible
+    volumes:
+      - ./:/data
+    networks:
+      - cp_network
+
+  # Create as many instances of ansible_target here as you need for deployment
+  # Set their hostnames to match the values in the hosts.yml file, the world is your oyster!
+  # Here we set up 3 containers.
+  cp1:
+    image: localbuild/ansible_target
+    build: ./ansible_target
+    privileged: true
+    hostname: ya4533.local.net
+    container_name: cp1
+    ports:
+      - "9093:9093"
+      - "9021:9021"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    networks:
+      - cp_network
+
+  cp2:
+    image: localbuild/ansible_target
+    build: ./ansible_target
+    privileged: true
+    hostname: ya4534.local.net
+    container_name: cp2
+    ports:
+      - "19093:9093"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    networks:
+      - cp_network
+
+  cp3:
+    image: localbuild/ansible_target
+    build: ./ansible_target
+    privileged: true
+    hostname: ya4535.local.net
+    container_name: cp3
+    ports:
+      - "29093:9093"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    networks:
+      - cp_network
+
+networks:
+  cp_network:
+
+      
