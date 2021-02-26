@@ -21,6 +21,13 @@ cd cp-ansible-playground
 git clone https://github.com/confluentinc/cp-ansible.git
 ````
 
+Create a local ssh private key without a password
+````
+cat /dev/zero | ssh-keygen -t RSA -C "SSH key for ansible testing" -f ./sshkey -q -N ""
+cp sshkey.pub ansible_target_base/
+cp sshkey ansible_host/
+````
+
 ## Prepare the inventory
 
 Assuming someone has given you a hosts.yml file, or you have created your own one - this defines how you want Confluent Platform to be deployed across a bunch of machines. These machines are the *inventory*.

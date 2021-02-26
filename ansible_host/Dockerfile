@@ -6,7 +6,7 @@ RUN yum -y install java-11-openjdk \
       openssh-clients &&  \
       mkdir /root/.ssh
 
-COPY id_rsa /root/.ssh/id_rsa
+COPY sshkey /root/.ssh/id_rsa
 
 VOLUME ["/sys/fs/cgroup"]
 CMD ["/usr/lib/systemd/systemd"]

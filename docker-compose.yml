@@ -28,6 +28,7 @@ services:
   # Create as many instances of ansible_target here as you need for deployment
   # Set their hostnames to match the values in the hosts.yml file, the world is your oyster!
   # Here we set up 3 containers.
+  
   cp1:
     image: localbuild/ansible_target
     build: ./ansible_target
