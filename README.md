@@ -37,10 +37,9 @@ Make sure you have as many instances of *ansible_target* in the *docker-compose.
 Also check what username the ansible playbooks should be run under, in this case it's **D003446** and edit the *docker-compose-yml* file to set *ansible_user* to that value in the *target* container.
 
 
-Start the inventory (the first time around you should see it build your container images) and then exec into the 'ansible' one.
+Start the inventory (the first time around you should see it build your container images).
 ````
 docker-compose up -d
-docker-compose  exec ansible /bin/bash
 ````
 This should give you a container where you run ansible from, the expected number of target containers running, plus 2 stopped intermediate containers.
 ````
@@ -57,6 +56,10 @@ cp3                              /usr/lib/systemd/systemd   Up       0.0.0.0:290
 
 ## Run your playbooks!
 
+First *exec* into the **ansible** container.
+````
+docker-compose exec ansible /bin/bash
+````
 Now you need to grab some public keys from the target machines
 ````
 cd /data
