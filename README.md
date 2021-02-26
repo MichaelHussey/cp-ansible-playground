@@ -43,6 +43,9 @@ Now you can run the playbooks
 cd /data/cp-ansible
 ansible-playbook -i ../hosts_minimum_1.yml all.yml
 ````
+You can deploy and re-deploy to your heart's content and run whatever tests you need to check the cluster works correctly.
+
+## Cleaning up
 
 When you're finished clean up with
 ````
