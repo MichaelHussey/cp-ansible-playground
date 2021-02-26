@@ -16,6 +16,8 @@ This project uses docker-compose to create that inventory as a bunch of local do
 
 First grab a copy of cp-ansible into the directory where you put this stuff
 ````
+git clone https://github.com/MichaelHussey/cp-ansible-playground.git
+cd cp-ansible-playground
 git clone https://github.com/confluentinc/cp-ansible.git
 ````
 
