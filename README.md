@@ -14,11 +14,9 @@ This project uses docker-compose to create that inventory as a bunch of local do
 
 ## Getting started
 
-First grab a copy of cp-ansible into the directory where you put this stuff
+The Confluent cp-ansible repo is uses as as `git submodule` so the easiest way is to clone as follows
 ````
-git clone https://github.com/MichaelHussey/cp-ansible-playground.git
-cd cp-ansible-playground
-git clone https://github.com/confluentinc/cp-ansible.git
+git clone --recurse-submodules https://github.com/MichaelHussey/cp-ansible-playground.git
 ````
 
 Create a local ssh private key without a password
